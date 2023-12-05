@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+  const gridSize = 10;
+
+  const renderGrid = () => {
+    const grid = [];
+
+    for (let row = 0; row < gridSize; row++) {
+      for (let col = 0; col < gridSize; col++) {
+        const cellId = `cell-${row}-${col}`;
+        grid.push(<div key={cellId} className="cell" id={cellId}></div>);
+      }
+    }
+
+    return grid;
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="grid">{renderGrid()}</div>
     </div>
   );
-}
+};
 
 export default App;
