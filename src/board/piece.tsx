@@ -3,17 +3,21 @@ import { CSSProperties } from "react";
 export class Piece {
   private shape: number[][];
   private anchor: { x: number; y: number };
+  private x: number;
+  private y: number;
 
   constructor(shape: number[][], anchor: { x: number; y: number }) {
     this.shape = shape;
     this.anchor = anchor;
+    this.x = this.shape[0].length;
+    this.y = this.shape.length;
   }
 
   private initializeCells(): JSX.Element[] {
     const cells: JSX.Element[] = [];
     const length = 42;
-    for (let i = 0; i < this.shape.length; i++) {
-      for (let k = 0; k < this.shape[0].length; k++) {
+    for (let i = 0; i < this.y; i++) {
+      for (let k = 0; k < this.x; k++) {
         const cellId = `cell-${i}-${k}`;
         const cellClass = this.shape[i][k] === 1 ? "cell" : "no-cell";
         const cellStyle: CSSProperties =
@@ -43,14 +47,14 @@ export class Piece {
     return cells;
   }
 
-  private generateStyles(scale: number): CSSProperties {
+  private generateStyles(x: number, y: number): CSSProperties {
     const length = 42; // 单个拼图单元的宽度
 
     return {
       display: "flex",
       flexWrap: "wrap",
-      width: (length + 2) * scale,
-      height: (length + 2) * scale,
+      width: (length + 2) * x,
+      height: (length + 2) * y,
     };
   }
 
@@ -71,7 +75,7 @@ export class Piece {
   }
 
   public render(): JSX.Element {
-    const styles = this.generateStyles(this.shape.length);
+    const styles = this.generateStyles(this.x, this.y);
     return <div style={styles}>{this.initializeCells()}</div>;
   }
 }

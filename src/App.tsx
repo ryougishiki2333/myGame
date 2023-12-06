@@ -10,8 +10,9 @@ const App: React.FC = () => {
 
   const piece = new Piece(
     [
-      [1, 1],
-      [1, 0],
+      [1, 1, 1],
+      [1, 0, 0],
+      [1, 0, 0],
     ],
     { x: 0, y: 0 }
   );
