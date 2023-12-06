@@ -1,24 +1,26 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Grid } from "./board/grid";
+import { Piece } from "./board/piece";
 
 const App: React.FC = () => {
   const gridSize = 10;
+  const grid = new Grid(gridSize);
+  const renderedGrid = grid.render();
 
-  const renderGrid = () => {
-    const grid = [];
-  
-    for (let i = 0; i < gridSize * gridSize; i++) {
-      const cellId = `cell-${i}`;
-      grid.push(<div key={cellId} className="cell" id={cellId}></div>);
-    }
-  
-    return grid;
-  };
+  const piece = new Piece(
+    [
+      [1, 1],
+      [1, 0],
+    ],
+    { x: 0, y: 0 }
+  );
+  const renderedPiece = piece.render();
 
   return (
     <div className="main">
-      <div className="side"></div>
-      <div className="grid">{renderGrid()}</div>
+      <div className="side">{renderedPiece}</div>
+      <div className="grid">{renderedGrid}</div>
       <div className="side"></div>
     </div>
   );

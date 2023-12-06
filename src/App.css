@@ -4,21 +4,3 @@
   align-items: center;
   display: flex;
 }
-
-.side {
-  flex-grow: 1;
-}
-
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  width: 440px; /* (20px + 2px) * 10 + 2px */
-}
-
-.cell {
-  width: 40px;
-  height: 40px;
-  background-color: lightgray;
-  border: 1px solid black;
-  margin: 1px;
-}
