@@ -31,14 +31,43 @@ const App: React.FC = () => {
 
   const onDragEnd = (result: any) => {
     console.log(result);
-  }
+  };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="main">
-        <div>{renderedPiece}</div>
-        <div>{renderedPiece2}</div>
-      </div>
+      <Droppable droppableId="droppable">
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className="main"
+          >
+            <Draggable key={"1"} draggableId={"1"} index={1}>
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                >
+                  {renderedPiece}
+                </div>
+              )}
+            </Draggable>
+            <Draggable key={"2"} draggableId={"2"} index={2}>
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                >
+                  {renderedPiece2}
+                </div>
+              )}
+            </Draggable>
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
     </DragDropContext>
   );
 };
