@@ -1,5 +1,4 @@
 import { CSSProperties } from "react";
-
 export class Grid {
   private gridSize: number;
   private cells: JSX.Element[];
@@ -33,6 +32,7 @@ export class Grid {
       display: "flex",
       flexWrap: "wrap",
       width: (length + 2) * scale,
+      height: (length + 2) * scale,
     };
   }
 

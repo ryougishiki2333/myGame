@@ -1,16 +1,17 @@
 import { CSSProperties } from "react";
-
 export class Piece {
   private shape: number[][];
   private anchor: { x: number; y: number };
   private x: number;
   private y: number;
+  private id: number;
 
-  constructor(shape: number[][], anchor: { x: number; y: number }) {
+  constructor(shape: number[][], anchor: { x: number; y: number }, id: number) {
     this.shape = shape;
     this.anchor = anchor;
     this.x = this.shape[0].length;
     this.y = this.shape.length;
+    this.id = id;
   }
 
   private initializeCells(): JSX.Element[] {
@@ -76,6 +77,7 @@ export class Piece {
 
   public render(): JSX.Element {
     const styles = this.generateStyles(this.x, this.y);
+    // 生成随机数字id函数
     return <div style={styles}>{this.initializeCells()}</div>;
   }
 }
